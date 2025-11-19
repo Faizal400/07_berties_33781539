@@ -1,13 +1,13 @@
 <!doctype html>
 <html>
   <head>
-    <title>Books - <%= shopData.shopName %></title>
+    <title>Search results - <%= shopData.shopName %></title>
     <link rel="stylesheet" type="text/css" href="/main.css" />
   </head>
   <body>
-    <h1>Books at <%= shopData.shopName %></h1>
+    <h1>Search results for "<%= keyword %>"</h1>
 
-    <% if (availableBooks && availableBooks.length > 0) { %>
+    <% if (results && results.length > 0) { %>
       <table>
         <thead>
           <tr>
@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <% availableBooks.forEach(function(book) { %>
+          <% results.forEach(function(book) { %>
             <tr>
               <td><%= book.name %></td>
               <td>£<%= book.price %></td>
@@ -25,9 +25,10 @@
         </tbody>
       </table>
     <% } else { %>
-      <p>No books found.</p>
+      <p>No books matched your search.</p>
     <% } %>
 
+    <p><a href="/books/search">New search</a></p>
     <p><a href="/">Back to home</a></p>
   </body>
 </html>
