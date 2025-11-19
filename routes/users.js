@@ -143,5 +143,17 @@ router.get('/audit', (req, res, next) => {
   });
 });
 
+// TEMP: debug route to generate a hash for "smiths"
+router.get('/debug-hash-smiths', (req, res, next) => {
+  const bcrypt = require('bcryptjs');
+  const saltRounds = 10;
+
+  bcrypt.hash('smiths', saltRounds, (err, hash) => {
+    if (err) return next(err);
+    console.log('DEBUG SMITHS HASH:', hash);
+    res.send('Hash for "smiths": ' + hash);
+  });
+});
+
 // Export the router object so index.js can access it
 module.exports = router;
