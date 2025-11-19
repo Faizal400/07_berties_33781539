@@ -68,6 +68,10 @@ router.get('/login', (req, res) => {
 router.post('/loggedin', (req, res, next) => {
   const { username, password } = req.body;
 
+  console.log("USERNAME:", username);
+  console.log("PASSWORD:", password);
+
+
   const sql = 'SELECT id, username, password_hash FROM users WHERE username = ?';
 
   db.query(sql, [username], (err, rows) => {
