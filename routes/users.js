@@ -68,10 +68,6 @@ router.get('/login', (req, res) => {
 router.post('/loggedin', (req, res, next) => {
   const { username, password } = req.body;
 
-  console.log("USERNAME:", username);
-  console.log("PASSWORD:", password);
-
-
   const sql = 'SELECT id, username, password_hash FROM users WHERE username = ?';
 
   db.query(sql, [username], (err, rows) => {
@@ -90,7 +86,14 @@ router.post('/loggedin', (req, res, next) => {
     const user = rows[0];
     const hashedPassword = user.password_hash;
     console.log("HASHEDPASSWORD:", hashedPassword);
+    console.log("DEBUG: Comparing now…");
+    console.log("TYPEOF password:", typeof password);
+    console.log("TYPEOF hash:", typeof hashedPassword);
+    console.log("PASSWORD LENGTH:", password.length);
+    console.log("HASH LENGTH:", hashedPassword.length);
     bcrypt.compare(password, hashedPassword, (err2, match) => {
+        console.log("RAW COMPARE RESULT:", match);
+        console.log("ERROR FROM COMPARE:", err2);
       if (err2) {
         return next(err2);
       }
