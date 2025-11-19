@@ -1,5 +1,5 @@
 # Berties Books - Lab 7
-> * A continuation of lab 6*
+> *A continuation of lab 6*
 
 Sample code for Dynamic Web Applications module.
 
